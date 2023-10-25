@@ -1,4 +1,4 @@
-let questions = [
+/*let questions = [
     {
         prompt: "Primitive data types do NOT include:\n(a) Undefined\n(b) String\n(c) Number\n(d) Objects",
         answer: "d"
@@ -39,4 +39,35 @@ let questions = [
         prompt: "What does the this keyword refer to?\n(a) Global Scope\n(b) The word This\n(c) Global Object\n(d) Current CSS Sheet",
         answer: "c"
     },
-];
+];*/
+
+let score = 0;
+const startbttn = document.getElementById("start");
+let timeEl = document.getElementById("timer");
+const questionEl = document.getElementById("questions");
+
+let timeLeft=90
+const timer = setInterval(function () {
+    timeLeft--;
+    timeEl.textContent = timeLeft
+    if(timeLeft === 0) {
+        clearInterval(timer);
+    }
+}, 1000);
+
+//startbttn.addEventListener("click", )
+
+
+
+
+
+/*for (let i=0; i< questions.length; i++){
+    let response = window.prompt(questions[i].prompt);
+    if(response == questions[i].answer){
+        score++;
+        alert("Correct")
+    } else {
+        alert("Incorrect")
+    };
+};*/
+//alert("you got " + score + "/" + questions.length);

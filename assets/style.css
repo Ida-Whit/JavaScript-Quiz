@@ -1,0 +1,35 @@
+#banner{
+    background-color: green;
+    color: white;
+    display: flex;
+}
+
+#timer{
+    position: absolute;
+    top: 8px;
+    right: 20px;
+}
+
+#body{
+    background-color: lightgreen;
+    text-align: center;
+    border: 2px solid black;
+}
+
+#start{
+    background-color: lightgreen;
+    border: 2px solid black;
+    position: absolute;
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    font-size: 18px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 30px 40px;
+}
+
+#questions{
+    border: 2px solid black;
+    max-width: 5%;
+}
