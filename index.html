@@ -13,11 +13,21 @@
             <h6>ViewHighscores</h6>
         </nav>
         <h6 id="timer"></h6>
-    </header>
+    </header>  
     <main>
-        <h3 id="body">Press "Start" to begin quiz. Timer will begin once you have answered the first question.</h3>
-        <p id="questions">QUESTIONS</p>
-        <button id="start" type="button">Start</button>
+        <h3 id="body">Press "Start" to begin quiz. Timer will begin once you click "Start".</h3>
+        <section>
+            <button id="start" type="button">Start</button>
+        </section>
+        <section id="question-box">
+            <div id="question"></div>
+            <div id="answer-btn"></div>
+                <button class="btn" id="btn-a">a</button>
+                <button class="btn" id="btn-b">b</button>
+                <button class="btn" id="btn-c">c</button>
+                <button class="btn" id="btn-d">d</button>
+                <button id="next-btn"> Next</button>
+        </section>
     </main>
     <script src="assets/script.js"></script>
 </body>

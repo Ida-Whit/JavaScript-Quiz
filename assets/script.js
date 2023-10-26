@@ -1,73 +1,161 @@
-/*let questions = [
+const prompts = [
     {
-        prompt: "Primitive data types do NOT include:\n(a) Undefined\n(b) String\n(c) Number\n(d) Objects",
-        answer: "d"
+        question: "Primitive data types do NOT include:",
+        answers: {
+            a: "Undefined",
+            b: "String",
+            c: "Number",
+            d: "Objects"
+        },
+        correctAnswer: "d"
     },
     {
-        prompt: "The modulus operator evenly divides two numbers.\n(a) True \n(b) False",
-        answer: "b"
+        question: "The modulus operator evenly divides two numbers.",
+        answer: {
+            a: "True",
+            b: "False",
+        },
+        correctAnswer: "b"
     },
     {
-        prompt: "Arrays are used to store groups of data in a single variable.\n(a) True\n(b) False",
-        answer: "a"
+        question: "Arrays are used to store groups of data in a single variable.",
+        answer: {
+            a: "True",
+            b: "False",
+        },
+        correctAnswer: "a"
     },
     {
-        prompt: "The index of an array always begins with which number?\n(a) 2\n(b) 10\n(c) 0\n(d) 1",
-        answer: "c"
+        question: "The index of an array always begins with which number?",
+        answer: {
+            a: "2",
+            b: "10",
+            c: "0",
+            d: "1"
+        },
+        correctAnswer: "c"
     },
     {
-        prompt: "In which scope would you delcare a variable in you want it to only be accessible by that code block?\n(a) Global\n(b) Script\n(c) Local\n(d)Event",
-        answer: "c"
+        question: "In which scope would you delcare a variable in you want it to only be accessible by that code block?",
+        answer: {
+            a: "Global",
+            b: "Script",
+            c: "Local",
+            d: "Event"
+        },
+        correctAnswer: "c"
     },
     {
-        prompt: "When does a keydown event get triggered by?\n(a) Pressing the down arrow key\n(b) Pressing any key down.\n(c) Letting any key pop back up after pressing it down.\n(d) Scrolling down the page with your mouse.",
-        answer: "b"
+        question: "When does a keydown event get triggered?",
+        answer: {
+            a: "Pressing the down arrow key.",
+            b: "Pressing any key down.",
+            c: "Letting any key pop back up after pressing it down.",
+            d: "Scrolling down the page with your mouse."
+        },
+        correctAnswer: "b"
     },
     {
-        prompt: "What command can you use to stop event bubbling from happening?\n(a) .stopBubbling\n(b) .stopEvent\n(c) .stopPropagation\n(d) .stopFunction",
-        answer: "c"
+        question: "What command can you use to stop event bubbling from happening?",
+        answer: {
+            a: ".stopBubbling",
+            b: ".stopEvent",
+            c: ".stopPropagation",
+            d: ".stopFunction"
+        },
+        correctAnswer: "c"
     },
     {
-        prompt: "How is a string notated in JavaScript?\n(a) double or single quotes\n(b) curly or square brackets\n(c) round or square brackets\n(d) two forward slashes or two backward slashes",
-        answer: "a"
+        question: "How is a string notated in JavaScript?",
+        answer: {
+            a: "Double or single quotes.",
+            b: "Curly or square brackets.",
+            c: "Round or square brackets.",
+            d: "Two forward slashes or two backward slashes."
+        },
+        correctAnswer: "a"
     },
     {
-        prompt: "What type of notation is used to access items in an object?\n(a) dot notation\n(b) square notation\n(c) bracket notation\n(d) both a and c",
-        answer: "d"
+        question: "What type of notation is used to access items in an object?",
+        answer: {
+            a: "Dot notation.",
+            b: "Square notation.",
+            c: "Bracket notation.",
+            d: "Both a and c"
+        },
+        correctAnswer: "d"
     },
     {
-        prompt: "What does the this keyword refer to?\n(a) Global Scope\n(b) The word This\n(c) Global Object\n(d) Current CSS Sheet",
-        answer: "c"
+        question: "What does the this keyword refer to?",
+        answer: {
+            a: "Global scope.",
+            b: "The work This.",
+            c: "Global object.",
+            d: "Current CSS sheet."
+        },
+        correctAnswer: "c"
     },
-];*/
-
+];
+let currentQuestion = 0
 let score = 0;
-const startbttn = document.getElementById("start");
-let timeEl = document.getElementById("timer");
-const questionEl = document.getElementById("questions");
+const questionEl = document.getElementById("question-box");
+const startbtn = document.getElementById("start");
+const timeEl = document.getElementById("timer");
+const nextbtn = document.getElementById("next-btn");
+let questionText = document.getElementById("question");
+let btnA = document.getElementById("btn-a");
+let btnB = document.getElementById("btn-b");
+let btnC = document.getElementById("btn-c");
+let btnD = document.getElementById("btn-d");
 
-let timeLeft=90
-const timer = setInterval(function () {
+startbtn.addEventListener("click", startQuiz);
+
+function startQuiz(){
+    console.log("sdgardh")
+    startbtn.style.display = "none";
+    questionEl.style.display = "block";
+    
+    questionText.innerHTML = prompts[currentQuestion].question;
+    btnA.innerHTML = prompts[currentQuestion].answers[0];
+    btnB.innerHTML = prompts[currentQuestion].answers[1];
+    btnC.innerHTML = prompts[currentQuestion].answers[2];
+    btnD.innerHTML = prompts[currentQuestion].answers[3];
+
+    /*let timeLeft=90
+    const timer = setInterval(function () {
     timeLeft--;
     timeEl.textContent = timeLeft
     if(timeLeft === 0) {
         clearInterval(timer);
     }
-}, 1000);
-
-//startbttn.addEventListener("click", )
-
-
+}, 1000)*/;
+nextbtn.addEventListener("click", nextQuestion)
+}
 
 
+function nextQuestion() {
+    for (let i=0; i< prompts.length; i++){
 
-/*for (let i=0; i< questions.length; i++){
-    let response = window.prompt(questions[i].prompt);
-    if(response == questions[i].answer){
-        score++;
+        let response = window.question(prompts[i].question);
+        if(response == prompts[i].answer){
+            score+=10;
+            alert("Correct")
+        } else {
+            timeLeft-=5
+            alert("Incorrect")
+        };
+    };
+}
+
+
+/*for (let i=0; i< prompts.length; i++){
+    let response = window.question(prompts[i].question);
+    if(response == prompts[i].answer){
+        score+=10;
         alert("Correct")
     } else {
+        timeLeft-+5
         alert("Incorrect")
     };
 };*/
-//alert("you got " + score + "/" + questions.length);
+//alert("you got " + score + "/" + prompts.length);
