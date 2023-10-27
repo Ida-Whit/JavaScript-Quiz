@@ -92,11 +92,11 @@ let btnA = document.getElementById("btn-a");
 let btnB = document.getElementById("btn-b");
 let btnC = document.getElementById("btn-c");
 let btnD = document.getElementById("btn-d");
-let button = document.getElementById("btn");
-
+let timeLeft=90
 
 
 startbtn.addEventListener("click", startQuiz);
+
 
 function startQuiz(){
     console.log("testing")
@@ -110,21 +110,22 @@ function startQuiz(){
     btnC.innerHTML = prompts[currentQuestion].c;
     btnD.innerHTML = prompts[currentQuestion].d;
     //Set a timer countdown to start as soon as the "Start" button is hit.
-    /*let timeLeft=90
     const timer = setInterval(function () {
     timeLeft--;
     timeEl.textContent = timeLeft
     if(timeLeft === 0) {
         clearInterval(timer);
     }
-}, 1000);*/
-nextQuestion;
+}, 1000);
 }
 
 
+
+nextbtn.addEventListener("click", nextQuestion());
+
 function nextQuestion() {
     for (let i = 0; i < prompts.length; i++) {
-    let userAnswer = prompts[i]
+        let userAnswer = prompts[i]
         if(userAnswer === prompts.correctAnswer) {
         score += 10;
     } else {
@@ -132,16 +133,3 @@ function nextQuestion() {
     }
     }
 };
-
-
-/*for (let i=0; i< prompts.length; i++){
-    let response = window.question(prompts[i].question);
-    if(response == prompts[i].answer){
-        score+=10;
-        alert("Correct")
-    } else {
-        timeLeft-+5
-        alert("Incorrect")
-    };
-};*/
-//alert("you got " + score + "/" + prompts.length);
