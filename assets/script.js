@@ -103,12 +103,6 @@ function startQuiz(){
     //Once "start" is clicked, make the button disappear and the quiz questions appear
     startbtn.style.display = "none";
     questionEl.style.display = "block";
-    button.addEventListener("click" function() {
-        color = "LightGreen"
-        if (color === "LightGreen") {
-            button.setAttribute()
-        }
-    })
     //Pull quiz questions and answer choices from the prompts object and display them on the screen
     questionText.innerHTML = prompts[currentQuestion].question;
     btnA.innerHTML = prompts[currentQuestion].a;
