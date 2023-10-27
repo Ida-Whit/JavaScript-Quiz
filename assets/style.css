@@ -29,7 +29,7 @@
 
 #question{
     border: 2px solid black;
-    max-width: 6%;
+    max-width: 50%;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif; 
     border-radius: 5%;
@@ -39,6 +39,7 @@
 
 #question-box{
     border: 2px solid black;
+    display: flex;
     justify-content: center;
     display: none;
     height: 100%;
@@ -60,4 +61,8 @@
 
 .btn:hover{
     background-color: green;
+}
+
+#results{
+    display: none;
 }

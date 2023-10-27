@@ -83,6 +83,7 @@ const prompts = [
 //Declare variables
 let currentQuestion = 0
 let score = 0;
+let timeLeft=90;
 const questionEl = document.getElementById("question-box");
 const startbtn = document.getElementById("start");
 const timeEl = document.getElementById("timer");
@@ -92,7 +93,8 @@ let btnA = document.getElementById("btn-a");
 let btnB = document.getElementById("btn-b");
 let btnC = document.getElementById("btn-c");
 let btnD = document.getElementById("btn-d");
-let timeLeft=90
+const results = document.getElementById("results")
+let button = document.querySelectorAll(".btn");
 
 
 startbtn.addEventListener("click", startQuiz);
@@ -104,11 +106,6 @@ function startQuiz(){
     startbtn.style.display = "none";
     questionEl.style.display = "block";
     //Pull quiz questions and answer choices from the prompts object and display them on the screen
-    questionText.innerHTML = prompts[currentQuestion].question;
-    btnA.innerHTML = prompts[currentQuestion].a;
-    btnB.innerHTML = prompts[currentQuestion].b;
-    btnC.innerHTML = prompts[currentQuestion].c;
-    btnD.innerHTML = prompts[currentQuestion].d;
     //Set a timer countdown to start as soon as the "Start" button is hit.
     const timer = setInterval(function () {
     timeLeft--;
@@ -121,15 +118,34 @@ function startQuiz(){
 
 
 
-nextbtn.addEventListener("click", nextQuestion());
+nextbtn.addEventListener("click", function() {
+    nextQuestion();
+    questionText.innerHTML = prompts[currentQuestion].question;
+    btnA.innerHTML = prompts[currentQuestion].a;
+    btnB.innerHTML = prompts[currentQuestion].b;
+    btnC.innerHTML = prompts[currentQuestion].c;
+    btnD.innerHTML = prompts[currentQuestion].d;
+});
 
 function nextQuestion() {
     for (let i = 0; i < prompts.length; i++) {
         let userAnswer = prompts[i]
-        if(userAnswer === prompts.correctAnswer) {
-        score += 10;
-    } else {
-        timeLeft -= 5
+        if(userAnswer === prompts[i].correctAnswer) {
+        score ++;
     }
+    } currentQuestion++
+    if (currentQuestion === prompts.length){
+        endQuiz();
     }
 };
+
+function endQuiz(){
+    questionEl.style.display = "none";
+    results.style.display = "block"
+}
+
+/*
+btnA.addEventListener("click", )
+btnB.addEventListener("click", )
+btnC.addEventListener("click", )
+btnD.addEventListener("click", )*/
