@@ -87,6 +87,7 @@ let timeLeft = 90;
 const questionEl = document.getElementById("question-box");
 const startbtn = document.getElementById("start");
 const timeEl = document.getElementById("timer");
+const bodyEl = document.getElementById("body")
 let endScore = document.getElementById("score")
 let questionText = document.getElementById("question");
 let btnA = document.getElementById("btn-a");
@@ -95,20 +96,24 @@ let btnC = document.getElementById("btn-c");
 let btnD = document.getElementById("btn-d");
 let button = document.querySelectorAll(".btn");
 let timer;
+const instructions = document.getElementById("list")
 const submitbtn = document.getElementById("submit")
 const highSc = document.getElementById ("scoreScreen")
-let initialInput = document.getElementById ("name")
-let highScore = { initials: initialInput.value,
+let initialInput = document.getElementById ("name") 
+let highScore = {name: initialInput.value.trim(),
     userScore: score
     };
-
+const initials = localStorage.getItem ("initials");
+let header = document.createElement("h2");
+let paragraph = document.createElement("p");
 
 
 function startQuiz() {
     //Once "start" is clicked, make the button disappear and the quiz questions appear
     startbtn.style.display = "none";
+    instructions.style.display = "none"
+    bodyEl.style.display = "none"
     questionEl.style.display = "block";
-    //Pull quiz questions and answer choices from the prompts object and display them on the screen
     //Set a timer countdown to start as soon as the "Start" button is hit.
     timer = setInterval(function () {
         timeLeft--;
@@ -122,7 +127,7 @@ function startQuiz() {
 }
 
 
-
+//Pull quiz questions and answer choices from the prompts object and display them on the screen
 function click() {
     questionText.innerHTML = prompts[currentQuestion].question;
     btnA.innerHTML = prompts[currentQuestion].a;
@@ -132,7 +137,7 @@ function click() {
 }
 
 
-
+//Determine if the option user clicks is correct or incorrect and deduct time/add points accordingly.
 function nextQuestion() {
     if (this.textContent !== prompts[currentQuestion].correctAnswer) {
         timeLeft = timeLeft - 10
@@ -140,9 +145,9 @@ function nextQuestion() {
     } else {
         score ++
     }
-
+//Move onto next question
     currentQuestion++
-   
+//Ends the timer if the time goes to zero or if all the questions have been answered.
     if (timeLeft <= 0 || currentQuestion === prompts.length) {
         endQuiz();
     } else {
@@ -150,10 +155,13 @@ function nextQuestion() {
     }
 };
 
+
+
+//Takes away the questions display and shows the end results display.
 function endQuiz() {
     questionEl.style.display = "none";
     results.style.display = "block"
-
+//Stops the timer and displays how much time was left at the end of the quiz.
     clearInterval(timer)
 
     if(timeLeft < 0){
@@ -161,29 +169,26 @@ function endQuiz() {
         timeEl.textContent = timeLeft
     }
     endScore.innerHTML = score
+//Puts users score to local storage.
+    localStorage.setItem("scores", score)
 }
+
 
 function scoreList (event) {
     event.preventDefault();
     results.style.display = "none"
     highSc.style.display = "block"
+    localStorage.getItem(score)
     localStorage.setItem("highScore", JSON.stringify(highScore));
 }
 
-let header = document.createElement("h2");
-let paragraph = document.createElement("p");
+
 
 header.textContent = "High Score Board";
-paragraph.innerHTML = JSON.stringify(highScore)
+paragraph.textContent = JSON.stringify(highScore)
 
 highSc.appendChild(header);
 header.appendChild(paragraph);
-
-//This will be used to get the users initials for the high score board...
-//will need to render the initials into an array before i can do that.
-//const initials = localStorage.getItem ("initials");
-
-
 
 startbtn.addEventListener("click", startQuiz);
 
@@ -193,13 +198,3 @@ btnC.addEventListener("click", nextQuestion)
 btnD.addEventListener("click", nextQuestion)
 
 submitbtn.addEventListener("click", scoreList)
-
-
-/*const email = localStorage.getItem("email");
-const password = localStorage.getItem("password");
-
-<div class="card">
-<h2>Last Registered User:</h2>
-<p><strong>Email:</strong> <span id="user-email"></span></p>
-<p><strong>Password:</strong> <span id="user-password"></span></p>
-</div>*/

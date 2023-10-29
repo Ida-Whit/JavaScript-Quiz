@@ -16,17 +16,23 @@
     </header>
     <main>
         <h3 id="body">Press "Start" to begin quiz. Timer will begin once you click "Start".</h3>
+            <ul id="list">
+                <li>There are 10 questions in total on this quiz</li>
+                <li>You will have 90 seconds to complete this quiz.</li>
+                <li>For each incorrect answer, 10 seconds will be deducted from your timer.</li>
+                <li>For each correct answer, you will recieve one point.</li>
+            </ul>
         <section>
             <button id="start" type="button">Start</button>
         </section>
         <section id="question-box">
             <div id="question"></div>
-            <div id="answer-btn">
-                <button class="btn" id="btn-a">a</button>
-                <button class="btn" id="btn-b">b</button>
-                <button class="btn" id="btn-c">c</button>
-                <button class="btn" id="btn-d">d</button>
-            </div>
+                <ul id="answer-btn">
+                    <li><button class="btn" id="btn-a">a</button> </li>
+                    <li><button class="btn" id="btn-b">b</button> </li>
+                    <li><button class="btn" id="btn-c">c</button> </li>
+                    <li><button class="btn" id="btn-d">d</button> </li>
+                </ul>
         </section>
         <section id="results">
             <h3>RESULTS</h3>

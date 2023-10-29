@@ -10,14 +10,28 @@
     right: 20px;
 }
 
-#body{
+body{
     background-color: lightgreen;
-    text-align: center;
+}
+
+main{
     border: 2px solid black;
 }
 
+#body{
+    text-align: center;
+}
+
+#list{
+    text-align: center;
+    list-style-type: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+}
+
 #start{
-    background-color: lightgreen;
+    background-color: green;
+    color: white;
     border: 2px solid black;
     position: absolute;
     border-radius: 5%;
@@ -32,27 +46,29 @@
     max-width: 50%;
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif; 
-    border-radius: 5%;
     background-color: #008000;
     color: white;
+    position: absolute;
+    left: 42%;
 }
 
 #question-box{
     border: 2px solid black;
-    display: flex;
-    justify-content: center;
     display: none;
     height: 100%;
     width: 100%;
 }
 
-.btn{
-    background-color: lightgreen;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+#answer-btn{
     text-align: center;
     font-size: 100%;
-    display: grid;
+    list-style-type: none;
+}
+
+.btn{
     user-select: all;
+    background-color: lightgreen;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #next-btn:hover{
