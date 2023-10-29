@@ -65,4 +65,12 @@
 
 #results{
     display: none;
+    background-color: lightgreen;
+    text-align: center;
+}
+
+#scoreScreen{
+    display: none;
+    background-color: lightgreen;
+    text-align: center;
 }

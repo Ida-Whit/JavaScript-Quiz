@@ -13,7 +13,7 @@
             <h6>View Highscores</h6>
         </nav>
         <h6 id="timer"></h6>
-    </header>  
+    </header>
     <main>
         <h3 id="body">Press "Start" to begin quiz. Timer will begin once you click "Start".</h3>
         <section>
@@ -21,16 +21,23 @@
         </section>
         <section id="question-box">
             <div id="question"></div>
-            <div id="answer-btn"></div>
-                <button  class="btn" id="btn-a">a</button>
-                <button  class="btn" id="btn-b">b</button>
-                <button  class="btn" id="btn-c">c</button>
-                <button  class="btn" id="btn-d">d</button>
-                <button id="next-btn"> Next</button>
+            <div id="answer-btn">
+                <button class="btn" id="btn-a">a</button>
+                <button class="btn" id="btn-b">b</button>
+                <button class="btn" id="btn-c">c</button>
+                <button class="btn" id="btn-d">d</button>
+            </div>
         </section>
         <section id="results">
-            <p>RESULTS</p>
+            <h3>RESULTS</h3>
+            <p>Final Score: <span id="score"></span></p>
+            <div>
+                <label for="name">Initials</label>
+                <input type="text" id="name">
+                <button id="submit">Submit</button>
+            </div>
         </section>
+        <section id="scoreScreen"></section>
     </main>
     <script src="assets/script.js"></script>
 </body>
