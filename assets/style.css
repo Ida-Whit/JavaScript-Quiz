@@ -4,6 +4,10 @@
     display: flex;
 }
 
+#scores:hover {
+    color: black;
+}
+
 #timer{
     position: absolute;
     top: 8px;

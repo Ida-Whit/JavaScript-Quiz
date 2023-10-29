@@ -82,7 +82,6 @@ const prompts = [
 ];
 //Declare variables
 let currentQuestion = 0
-let score = 0;
 let timeLeft = 90;
 const questionEl = document.getElementById("question-box");
 const startbtn = document.getElementById("start");
@@ -96,13 +95,11 @@ let btnC = document.getElementById("btn-c");
 let btnD = document.getElementById("btn-d");
 let button = document.querySelectorAll(".btn");
 let timer;
+const scoreBoard = document.getElementById("scores")
 const instructions = document.getElementById("list")
 const submitbtn = document.getElementById("submit")
 const highSc = document.getElementById ("scoreScreen")
 let initialInput = document.getElementById ("name") 
-let highScore = {name: initialInput.value.trim(),
-    userScore: score
-    };
 const initials = localStorage.getItem ("initials");
 let header = document.createElement("h2");
 let paragraph = document.createElement("p");
@@ -142,8 +139,6 @@ function nextQuestion() {
     if (this.textContent !== prompts[currentQuestion].correctAnswer) {
         timeLeft = timeLeft - 10
         timeEl.textContent = timeLeft
-    } else {
-        score ++
     }
 //Move onto next question
     currentQuestion++
@@ -168,9 +163,9 @@ function endQuiz() {
         timeLeft = 0
         timeEl.textContent = timeLeft
     }
-    endScore.innerHTML = score
+    endScore.innerHTML = timeLeft
 //Puts users score to local storage.
-    localStorage.setItem("scores", score)
+  //  localStorage.setItem("scores", score)
 }
 
 
@@ -178,14 +173,24 @@ function scoreList (event) {
     event.preventDefault();
     results.style.display = "none"
     highSc.style.display = "block"
-    localStorage.getItem(score)
+    //localStorage.getItem(score)
+    let highScore = {name: initialInput.value.trim(),
+        userScore: timeLeft
+        };
     localStorage.setItem("highScore", JSON.stringify(highScore));
+    }
+
+
+function showScores(){
+    results.style.display = "none"
+    questionEl.style.display = "none"
+    highSc.style.display = "block"
 }
 
-
-
 header.textContent = "High Score Board";
-paragraph.textContent = JSON.stringify(highScore)
+paragraph.textContent = `initials: ${localStorage.getItem("name")} - score: ${localStorage.getItem("userScore")}`
+
+ 
 
 highSc.appendChild(header);
 header.appendChild(paragraph);
@@ -198,3 +203,5 @@ btnC.addEventListener("click", nextQuestion)
 btnD.addEventListener("click", nextQuestion)
 
 submitbtn.addEventListener("click", scoreList)
+
+scoreBoard.addEventListener("click", showScores)
