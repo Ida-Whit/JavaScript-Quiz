@@ -1,11 +1,21 @@
+:root{
+    --background: green;
+    --text: white;
+    --light: lightgreen;
+}
+
 #banner{
-    background-color: green;
-    color: white;
+    background-color: var(--background);
+    color: var(--text);
     display: flex;
 }
 
 #scores:hover {
     color: black;
+}
+
+#return:hover {
+    color: black
 }
 
 #timer{
@@ -15,7 +25,7 @@
 }
 
 body{
-    background-color: lightgreen;
+    background-color: var(--light);
 }
 
 main{
@@ -34,8 +44,8 @@ main{
 }
 
 #start{
-    background-color: green;
-    color: white;
+    background-color: var(--background);
+    color: var(--text);
     border: 2px solid black;
     position: absolute;
     border-radius: 5%;
@@ -47,50 +57,53 @@ main{
 
 #question{
     border: 2px solid black;
-    max-width: 50%;
+    width: 100%;
     text-align: center;
+    font-size: 150%;
     font-family: Georgia, 'Times New Roman', Times, serif; 
-    background-color: #008000;
-    color: white;
-    position: absolute;
-    left: 42%;
+    background-color: var(--background);
+    color: var(--text);
 }
 
 #question-box{
     border: 2px solid black;
     display: none;
-    height: 100%;
-    width: 100%;
+    width: 50%;
+    position: absolute;
+    left: 20%
 }
 
 #answer-btn{
     text-align: center;
     font-size: 100%;
     list-style-type: none;
+    margin: 5%;
 }
 
 .btn{
     user-select: all;
-    background-color: lightgreen;
+    background-color: var(--light);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    border: 2px solid black;
+    border-radius: 25%;
 }
 
 #next-btn:hover{
-    background-color: green;
+    background-color: var(--background);
 }
 
 .btn:hover{
-    background-color: green;
+    background-color: var(--background);
 }
 
 #results{
     display: none;
-    background-color: lightgreen;
+    background-color: var(--light);
     text-align: center;
 }
 
 #scoreScreen{
     display: none;
-    background-color: lightgreen;
+    background-color: var(--light);
     text-align: center;
 }

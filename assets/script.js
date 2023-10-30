@@ -100,9 +100,12 @@ const instructions = document.getElementById("list")
 const submitbtn = document.getElementById("submit")
 const highSc = document.getElementById ("scoreScreen")
 let initialInput = document.getElementById ("name") 
-const initials = localStorage.getItem ("initials");
+let initials = localStorage.getItem ("initials");
 let header = document.createElement("h2");
 let paragraph = document.createElement("p");
+let restart = document.getElementById("return");
+let scores = JSON.parse(localStorage.getItem("highScore"));
+
 
 
 function startQuiz() {
@@ -112,6 +115,7 @@ function startQuiz() {
     bodyEl.style.display = "none"
     questionEl.style.display = "block";
     //Set a timer countdown to start as soon as the "Start" button is hit.
+    timeLeft = 90
     timer = setInterval(function () {
         timeLeft--;
         timeEl.textContent = timeLeft
@@ -151,7 +155,6 @@ function nextQuestion() {
 };
 
 
-
 //Takes away the questions display and shows the end results display.
 function endQuiz() {
     questionEl.style.display = "none";
@@ -164,16 +167,12 @@ function endQuiz() {
         timeEl.textContent = timeLeft
     }
     endScore.innerHTML = timeLeft
-//Puts users score to local storage.
-  //  localStorage.setItem("scores", score)
 }
-
 
 function scoreList (event) {
     event.preventDefault();
     results.style.display = "none"
     highSc.style.display = "block"
-    //localStorage.getItem(score)
     let highScore = {name: initialInput.value.trim(),
         userScore: timeLeft
         };
@@ -185,12 +184,26 @@ function showScores(){
     results.style.display = "none"
     questionEl.style.display = "none"
     highSc.style.display = "block"
+    startbtn.style.display = "none";
+    instructions.style.display = "none"
+    bodyEl.style.display = "none"
+    clearInterval(timer)
 }
 
-header.textContent = "High Score Board";
-paragraph.textContent = `initials: ${localStorage.getItem("name")} - score: ${localStorage.getItem("userScore")}`
+function beginning() {
+    results.style.display = "none"
+    questionEl.style.display = "none"
+    highSc.style.display = "none"
+    bodyEl.style.display = "block"
+    startbtn.style.display = "block";
+    instructions.style.display = "block"
+    clearInterval(timer)
+}
 
- 
+header.textContent = "Score Board";
+paragraph.textContent = `initials: ${scores.name} - score: ${scores.userScore}`
+
+
 
 highSc.appendChild(header);
 header.appendChild(paragraph);
@@ -205,3 +218,5 @@ btnD.addEventListener("click", nextQuestion)
 submitbtn.addEventListener("click", scoreList)
 
 scoreBoard.addEventListener("click", showScores)
+
+restart.addEventListener("click", beginning)
