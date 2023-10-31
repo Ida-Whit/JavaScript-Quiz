@@ -104,7 +104,6 @@ let initials = localStorage.getItem ("initials");
 let header = document.createElement("h2");
 let paragraph = document.createElement("p");
 let restart = document.getElementById("return");
-let scores = JSON.parse(localStorage.getItem("highScore"));
 
 
 
@@ -176,6 +175,7 @@ function scoreList (event) {
     let highScore = {name: initialInput.value.trim(),
         userScore: timeLeft
         };
+    let scores = JSON.parse(localStorage.getItem("highScore"));
     localStorage.setItem("highScore", JSON.stringify(highScore));
     }
 
