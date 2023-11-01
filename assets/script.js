@@ -105,7 +105,7 @@ let header = document.createElement("h2");
 let paragraph = document.createElement("p");
 let restart = document.getElementById("return");
 let scores = JSON.parse(localStorage.getItem("highScore"));
-
+const placeholder = ""
 
 
 function startQuiz() {
@@ -121,7 +121,6 @@ function startQuiz() {
         timeEl.textContent = timeLeft
         if (timeLeft <= 0) {
             endQuiz()
-
         }
     }, 1000);
     click()
@@ -177,7 +176,17 @@ function scoreList (event) {
         userScore: timeLeft
         };
     localStorage.setItem("highScore", JSON.stringify(highScore));
-    }
+};
+
+if (!localStorage.getItem("initals")) {
+    populateInitials();
+} else {
+scoreList()}   
+
+function populateInitials() {
+    localStorage.setItem ("initials", scores)
+}
+
 
 
 function showScores(){
@@ -200,9 +209,9 @@ function beginning() {
     clearInterval(timer)
 }
 
-header.textContent = "Score Board";
-paragraph.textContent = `initials: ${scores.name} - score: ${scores.userScore}`
 
+header.textContent = "Score Board";
+paragraph.textContent = `initials:${scores.name} - score:${scores.userScore}`
 
 
 highSc.appendChild(header);
