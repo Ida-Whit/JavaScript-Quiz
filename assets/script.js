@@ -99,13 +99,22 @@ const scoreBoard = document.getElementById("scores")
 const instructions = document.getElementById("list")
 const submitbtn = document.getElementById("submit")
 const highSc = document.getElementById ("scoreScreen")
-let initialInput = document.getElementById ("name") 
-let initials = localStorage.getItem ("initials");
+let initialInput = document.getElementById ("name")
 let header = document.createElement("h2");
-let paragraph = document.createElement("p");
+let paragraph = document.createElement("ol");
 let restart = document.getElementById("return");
-let scores = JSON.parse(localStorage.getItem("highScore"));
+let scores = JSON.parse(localStorage.getItem("highScore")) || [];
 const placeholder = ""
+
+
+//Pull existing scores from local storage on page load and display them on the high scores board.
+if (scores != null) {
+    for (let i = 0; i < scores.length; i++) {
+        const list = document.createElement("li")
+        paragraph.appendChild(list)
+        list.textContent = `initials:${scores[i].name} - score:${scores[i].userScore}`
+    }
+  }
 
 
 function startQuiz() {
@@ -168,26 +177,23 @@ function endQuiz() {
     endScore.innerHTML = timeLeft
 }
 
+//Saves end user score to local storage
 function scoreList (event) {
     event.preventDefault();
     results.style.display = "none"
     highSc.style.display = "block"
     let highScore = {name: initialInput.value.trim(),
-        userScore: timeLeft
-        };
-    localStorage.setItem("highScore", JSON.stringify(highScore));
+        userScore: timeLeft};
+    scores.push(highScore)
+    localStorage.setItem("highScore", JSON.stringify(scores))
+    for (let i = 0; i<scores.length; i++) {
+        const list = document.createElement("li")
+        paragraph.appendChild(list);
+        list.textContent = `initials:${scores[i].name} - score:${scores[i].userScore}`
+    }  
 };
-
-if (!localStorage.getItem("initals")) {
-    populateInitials();
-} else {
-scoreList()}   
-
-function populateInitials() {
-    localStorage.setItem ("initials", scores)
-}
-
-
+ 
+//Bring up the final scores page once initials submit button is clicked.
 
 function showScores(){
     results.style.display = "none"
@@ -199,6 +205,8 @@ function showScores(){
     clearInterval(timer)
 }
 
+// Bring up starter page to begin quiz again once "return to start" button in upper left corner is clicked.
+
 function beginning() {
     results.style.display = "none"
     questionEl.style.display = "none"
@@ -207,15 +215,18 @@ function beginning() {
     startbtn.style.display = "block";
     instructions.style.display = "block"
     clearInterval(timer)
+    currentQuestion = 0
 }
 
 
+
 header.textContent = "Score Board";
-paragraph.textContent = `initials:${scores.name} - score:${scores.userScore}`
 
 
 highSc.appendChild(header);
 header.appendChild(paragraph);
+
+
 
 startbtn.addEventListener("click", startQuiz);
 
@@ -224,8 +235,9 @@ btnB.addEventListener("click", nextQuestion)
 btnC.addEventListener("click", nextQuestion)
 btnD.addEventListener("click", nextQuestion)
 
+//Click submit button once initials are added and be taken to the final scores list
 submitbtn.addEventListener("click", scoreList)
-
+//click the "View Previous Scores" button in the upper left corner and be taken to final scores list.
 scoreBoard.addEventListener("click", showScores)
-
+//Click "Return to Start" button in upper left corner and begin quiz again
 restart.addEventListener("click", beginning)
