@@ -12,6 +12,7 @@
         <nav>
             <h6 id="scores">View Previous Score</h6>
             <h6 id="return">Return to Start</h6>
+            <h6 id="clearBtn">Clear Scores</h6>
         </nav>
         <h6 id="timer"></h6>
     </header>
@@ -22,8 +23,9 @@
                 <li>You will have 90 seconds to complete this quiz.</li>
                 <li>For each incorrect answer, 10 seconds will be deducted from your timer.</li>
                 <li>Your end score will be determined by how much time you have left.</li>
-                <li>Click on "View Highscores" in the upper left corner to view the score and initials of the last quiz taker.</li>
+                <li>Click on "View Highscores" in the upper left corner to view previous high scores of other quiz takers.</li>
                 <li>Click on "Return to Start" in the upper left corner to return to starting point and try the quiz again.</li>
+                <li>Click "Clear Scores" to clear all previous high scores.</li>
             </ul>
         <section>
             <button id="start" type="button">Start</button>
@@ -47,6 +49,12 @@
             </div>
         </section>
         <section id="scoreScreen"></section>
+        <section id="myModal" class="modal">
+            <div class="modal-content">
+                <span id="close">&times;</span>
+                <p>Please enter valid initials</p>
+            </div>
+        </section>
     </main>
     <script src="assets/script.js"></script>
 </body>

@@ -105,6 +105,13 @@ let paragraph = document.createElement("ol");
 let restart = document.getElementById("return");
 let scores = JSON.parse(localStorage.getItem("highScore")) || [];
 const placeholder = ""
+const clearBtn = document.getElementById("clearBtn")
+const modal = document.getElementById("myModal")
+let exit = document.getElementById("close")
+exit.addEventListener("click", function(){
+    modal.style.display = "none"
+})
+
 
 
 //Pull existing scores from local storage on page load and display them on the high scores board.
@@ -177,20 +184,35 @@ function endQuiz() {
     endScore.innerHTML = timeLeft
 }
 
+//Click submit button once initials are added and be taken to the final scores list
+submitbtn.addEventListener("click", initials)
+
 //Saves end user score to local storage
-function scoreList (event) {
+function initials (event) {
     event.preventDefault();
+    results.style.display = "block"
+    highSc.style.display = "none"
+    let userInput = document.getElementById("name")
+    if(userInput.value == ""){
+        modal.style.display = "block"
+    } else {
+        scoreList()
+    }
+
+function scoreList() {
     results.style.display = "none"
     highSc.style.display = "block"
     let highScore = {name: initialInput.value.trim(),
         userScore: timeLeft};
     scores.push(highScore)
     localStorage.setItem("highScore", JSON.stringify(scores))
+    const list = document.createElement("li")
+    paragraph.appendChild(list);
+
     for (let i = 0; i<scores.length; i++) {
-        const list = document.createElement("li")
-        paragraph.appendChild(list);
         list.textContent = `initials:${scores[i].name} - score:${scores[i].userScore}`
     }  
+}
 };
  
 //Bring up the final scores page once initials submit button is clicked.
@@ -218,15 +240,21 @@ function beginning() {
     currentQuestion = 0
 }
 
+//Clear local storage with button click
+clearBtn.addEventListener("click", function() {
+    localStorage.clear(scores);
+    paragraph.innerHTML = ""
+})
 
 
 header.textContent = "Score Board";
 
-
 highSc.appendChild(header);
 header.appendChild(paragraph);
 
-
+exit.addEventListener("click", function(){
+    modal.style.display = "none"
+})
 
 startbtn.addEventListener("click", startQuiz);
 
@@ -235,8 +263,6 @@ btnB.addEventListener("click", nextQuestion)
 btnC.addEventListener("click", nextQuestion)
 btnD.addEventListener("click", nextQuestion)
 
-//Click submit button once initials are added and be taken to the final scores list
-submitbtn.addEventListener("click", scoreList)
 //click the "View Previous Scores" button in the upper left corner and be taken to final scores list.
 scoreBoard.addEventListener("click", showScores)
 //Click "Return to Start" button in upper left corner and begin quiz again
