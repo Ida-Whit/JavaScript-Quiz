@@ -11,6 +11,8 @@ N/A
 <img src="assets/High Scores.png">
 <img src="assets/Question Page.png">
 
+Deployed Link: https://ida-whit.github.io/JavaScript-Quiz/
+
 ## Installation
 N/A
 
